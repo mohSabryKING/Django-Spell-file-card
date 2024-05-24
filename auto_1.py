@@ -23,7 +23,7 @@ print("->"*10+"\n")
 print("->"*5+"\n")
 act1=Run.system("dir")
 print("->"*5+"\n")
-#act1=Run.chdir("../..")
+act1=Run.chdir("..")
 "place your virtual env her"
 act2=Run.chdir(act_call[2])
 act3=Run.system("dir")
