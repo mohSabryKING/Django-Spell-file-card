@@ -23,7 +23,7 @@ print("->"*10+"\n")
 print("->"*5+"\n")
 act1=Run.system("dir")
 print("->"*5+"\n")
-act1=Run.chdir("..")
+act1=Run.chdir("../..")
 "place your virtual env her"
 act2=Run.chdir(act_call[2])
 act3=Run.system("dir")
@@ -48,8 +48,11 @@ req_list_3=["admin","dpt_1","dpt_2","dpt_3","dpt_4"]
 act6=Run.system("django-admin startproject "+act_call[0].replace('\n',''))
 
 act6=Run.system("py manage.py runserver 3000")
+#move one step to be inside the project folder
 act6=Run.chdir(str(act_call[0].replace('\n','')))
 #act6=Run.system("django-admin startapp core20")
+
+#create your Django app
 act6=Run.system("py manage.py startapp "+act_call[1].replace('\n',''))
 #act6=Run.system("cd core_1")
 #act6=Run.chdir("core_1")
@@ -61,12 +64,15 @@ for i in range(len(req_list_1)):
   print("creating "+req_list_1[i]+" folder\n")
   act6=Run.mkdir(req_list_1[i])
 
-act6=Run.chdir("html")
 act6=Run.system("nul>html/home.html")
+act6=Run.chdir("html")
+#act6=Run.system("nul>html/home.html")
 for i in range(len(req_list_3)):
   print("creating "+req_list_3[i]+" folder at html folder\n")
   act6=Run.mkdir(req_list_3[i])
-  for f in range(1,5):
+  if i ==0:act6=Run.system("nul>"+req_list_3[i]+"/base.html")
+  else:
+   for f in range(1,5):
     act6=Run.system("nul>"+req_list_3[i]+"/view"+str(f)+".html")
 #point of foucs
 act6=Run.chdir("..")
@@ -77,8 +83,22 @@ act6=Run.chdir("static")
 for i in range(len(req_list_2)):
   print("creating "+req_list_2[i]+" folder\n")
   act6=Run.mkdir(req_list_2[i])
+  print("\nmaking the CSS & IMG files\n")
   for x in range(3):
     act6=Run.system("nul>"+req_list_2[i]+"/model"+str(x)+".css")
+    if i == 2:
+      print("\nmaking the JS files\n")
+      act6=Run.system("nul>"+req_list_2[i]+"/model"+str(x)+".js")
+
+
+
+act6=Run.chdir("../..")
+
+act6=Run.chdir(act_call[0].replace('\n',''))
+
+act6=Run.system("py manage.py runserver 7500")
+
+
 
 
 #act6=Run.system("cd Monja")
